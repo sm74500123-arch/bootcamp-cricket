@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricket Score Board</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#222;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.container{
+    text-align:center;
+    background:#111;
+    padding:30px;
+    border-radius:10px;
+    width:350px;
+}
+h1{
+    margin-bottom:20px;
+}
+p{
+    font-size:22px;
+}
+button{
+    padding:10px 20px;
+    margin:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cricket Score Board</h1>
+
+    <p>Balls : <span id="balls">0</span></p>
+    <p>Runs : <span id="runs">0</span></p>
+
+    <button id="hitBtn" onclick="hitBall()">Click to Hit the Ball</button>
+    <button onclick="resetGame()">Reset Game</button>
+</div>
+
+<script>
+let balls = 0;
+let runs = 0;
+
+const scores = [0,1,2,3,4,6];
+
+function hitBall(){
+    if(balls < 6){
+        let randomRun = scores[Math.floor(Math.random()*scores.length)];
+        runs += randomRun;
+        balls++;
+
+        document.getElementById("balls").innerText = balls;
+        document.getElementById("runs").innerText = runs;
+
+        if(balls === 6){
+            document.getElementById("hitBtn").disabled = true;
+            alert("Over Finished!");
+        }
+    }
+}
+
+function resetGame(){
+    balls = 0;
+    runs = 0;
+    document.getElementById("balls").innerText = balls;
+    document.getElementById("runs").innerText = runs;
+    document.getElementById("hitBtn").disabled = false;
+}
+</script>
+
+</body>
+</html>
